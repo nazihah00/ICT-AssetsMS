@@ -7,6 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AssetSettingController;
 use App\Http\Controllers\MaintenanceController;
 use App\Http\Controllers\DisposalController;
+
 use App\Http\Controllers\RelocationController;
 
 //Route::get('/', function () {
@@ -16,6 +17,7 @@ use App\Http\Controllers\RelocationController;
 Route::get('/auth/login', [AuthController::class, 'showLogin'])->name('auth.login');
 Route::post('/auth/login', [AuthController::class, 'login'])->name('login');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+
 Route::middleware(['auth'])->group(function () {
 
 Route::get('/dashboard', function () {
@@ -24,11 +26,10 @@ Route::get('/dashboard', function () {
         ->header('Cache-Control', 'no-cache, no-store, must-revalidate')
         ->header('Pragma', 'no-cache')
         ->header('Expires', '0');
-})->name('login');
+})->name('dashboard');
 
 Route::get('/auth/register', [AuthController::class, 'showRegister'])->name('register');
 Route::post('/auth/register', [AuthController::class, 'register'])->name('register');
-Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/auth/userlist', [UserController::class, 'list'])-> name ('auth.userlist');
 Route::get('/auth/edituser/{id}', [UserController::class, 'edit'])->name('auth.edituser');
 Route::post('/auth/edituser/{id}', [UserController::class, 'update'])->name('auth.edituser');
