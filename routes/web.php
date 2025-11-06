@@ -10,9 +10,8 @@ use App\Http\Controllers\DisposalController;
 
 use App\Http\Controllers\RelocationController;
 
-//Route::get('/', function () {
-//    return view('welcome');
-//});
+// Root route - show login page as main page
+Route::get('/', [AuthController::class, 'showLogin'])->name('home');
 
 Route::get('/auth/login', [AuthController::class, 'showLogin'])->name('auth.login');
 Route::post('/auth/login', [AuthController::class, 'login'])->name('login');
@@ -28,17 +27,17 @@ Route::get('/dashboard', function () {
         ->header('Expires', '0');
 })->name('dashboard');
 
-Route::get('/auth/register', [AuthController::class, 'showRegister'])->name('register');
-Route::post('/auth/register', [AuthController::class, 'register'])->name('register');
+Route::get('/auth/register', [AuthController::class, 'showRegister'])->name('auth.register.form');
+Route::post('/auth/register', [AuthController::class, 'register'])->name('auth.register');
 Route::get('/auth/userlist', [UserController::class, 'list'])-> name ('auth.userlist');
-Route::get('/auth/edituser/{id}', [UserController::class, 'edit'])->name('auth.edituser');
+Route::get('/auth/edituser/{id}', [UserController::class, 'edit'])->name('auth.edituser.form');
 Route::post('/auth/edituser/{id}', [UserController::class, 'update'])->name('auth.edituser');
 Route::post('/auth/delete/{id}', [UserController::class, 'delete'])->name('auth.delete');
 
 Route::get ('/assets/list', [AssetsController::class,'list'])->name('assets.list');
-Route::get('/assets/add', [AssetsController::class, 'add'])->name('assets.add');
+Route::get('/assets/add', [AssetsController::class, 'add'])->name('assets.add.form');
 Route::post('/assets/add', [AssetsController::class, 'insert'])->name('assets.add');
-Route::get('/assets/edit/{id}', [AssetsController::class, 'edit'])->name('assets.edit');
+Route::get('/assets/edit/{id}', [AssetsController::class, 'edit'])->name('assets.edit.form');
 Route::post('/assets/edit/{id}', [AssetsController::class, 'update'])->name('assets.edit');
 Route::post('/assets/delete/{id}', [AssetsController::class, 'delete'])->name('assets.delete');
 Route::get('/assets/view/{id}', [AssetsController::class, 'view'])->name('assets.view');
@@ -93,27 +92,27 @@ Route::delete('/assets/assetssetting/userasset/{id}', [AssetSettingController::c
 
 //maintenance
 Route::get ('/maintenance/list', [MaintenanceController::class,'list'])->name('maintenance.list');
-Route::get('/maintenance/add', [MaintenanceController::class, 'add'])->name('maintenance.add');
+Route::get('/maintenance/add', [MaintenanceController::class, 'add'])->name('maintenance.add.form');
 Route::post('/maintenance/add', [MaintenanceController::class, 'insert'])->name('maintenance.add');
-Route::get('/maintenance/edit/{id}', [MaintenanceController::class, 'edit'])->name('maintenance.edit');
+Route::get('/maintenance/edit/{id}', [MaintenanceController::class, 'edit'])->name('maintenance.edit.form');
 Route::post('/maintenance/edit/{id}', [MaintenanceController::class, 'update'])->name('maintenance.edit');
 Route::post('/maintenance/delete/{id}', [MaintenanceController::class, 'delete'])->name('maintenance.delete');
 Route::get('/maintenance/view/{id}', [MaintenanceController::class, 'view'])->name('maintenance.view');
 
 //disposal
 Route::get('/disposal/list', [DisposalController::class,'list'])->name('disposal.list');
-Route::get('/disposal/add', [DisposalController::class, 'add'])->name('disposal.add');
+Route::get('/disposal/add', [DisposalController::class, 'add'])->name('disposal.add.form');
 Route::post('/disposal/add', [DisposalController::class, 'insert'])->name('disposal.add');
-Route::get('/disposal/edit/{id}', [DisposalController::class, 'edit'])->name('disposal.edit');
+Route::get('/disposal/edit/{id}', [DisposalController::class, 'edit'])->name('disposal.edit.form');
 Route::post('/disposal/edit/{id}', [DisposalController::class, 'update'])->name('disposal.edit');
 Route::post('/disposal/delete/{id}', [DisposalController::class, 'delete'])->name('disposal.delete');
 Route::get('/disposal/view/{id}', [DisposalController::class, 'view'])->name('disposal.view');
 
 //relocatiom
 Route::get('/relocation/list', [RelocationController::class,'list'])->name('relocation.list');
-Route::get('/relocation/add', [RelocationController::class, 'add'])->name('relocation.add');
+Route::get('/relocation/add', [RelocationController::class, 'add'])->name('relocation.add.form');
 Route::post('/relocation/add', [RelocationController::class, 'insert'])->name('relocation.add');
-Route::get('/relocation/edit/{id}', [RelocationController::class, 'edit'])->name('relocation.edit');
+Route::get('/relocation/edit/{id}', [RelocationController::class, 'edit'])->name('relocation.edit.form');
 Route::post('/relocation/edit/{id}', [RelocationController::class, 'update'])->name('relocation.edit');
 Route::post('/relocation/delete/{id}', [RelocationController::class, 'delete'])->name('relocation.delete');
 Route::get('/relocation/view/{id}', [RelocationController::class, 'view'])->name('relocation.view');
@@ -124,5 +123,3 @@ Route::get('/assets/history/{id}', [App\Http\Controllers\AssetsController::class
 
 
 });
-
-
